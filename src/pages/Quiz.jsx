@@ -50,7 +50,7 @@ const Quiz = () => {
 
     return (
         <div className='h-[100vh] w-[100vw] bg-white relative'>
-            <div className='absolute top-5 right-5 text-lg font-semibold text-blue-600'>
+            <div className='absolute py-2 w-[150px] bg-red-500 top-5 right-5 text-lg font-semibold text-white text-center rounded'>
                 Time Left: {timeLeft}s
             </div>
 
