@@ -1,5 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { clearAnswers } from '../store/answerSlice';
 
 const Result = () => {
   const { list } = useSelector(store => store.answerSlice);
@@ -9,11 +11,22 @@ const Result = () => {
     return item?.selectedOption?.trim() === item?.currentQuestion?.correct?.trim() ? acc + 1 : acc;
   }, 0);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleClearList = () => {
+    dispatch(clearAnswers());
+    navigate('/')
+  }
+
   
 
   return (
     <div className='min-h-[100vh] w-[100vw] bg-white text-black flex flex-col items-center'>
       <h1 className="text-2xl font-bold mt-6">Your Score: {score} / {list?.length}</h1>
+      <button onClick={()=> handleClearList()} className='absolute btn py-2 w-[150px] bg-blue-500 top-5 right-5 text-lg font-semibold text-white text-center rounded'>
+        Go back
+      </button>
 
       <div className='w-[600px] h-full mt-4'>
         {
